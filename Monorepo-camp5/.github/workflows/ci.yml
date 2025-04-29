@@ -1,0 +1,35 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Run Cypress tests
+        run: npm run test
+        working-directory: ./packages/cypress-bdd
+      
+      - name: Run Lighthouse audit
+        run: npm run audit
+        working-directory: ./packages/lighthouse
+        
+      - name: Upload Lighthouse reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: lighthouse-reports
+          path: packages/lighthouse/audits/*.html

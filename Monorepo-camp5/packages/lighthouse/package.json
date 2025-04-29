@@ -8,5 +8,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "chrome-launcher": "^1.1.2",
+    "lighthouse": "^12.6.0"
+  }
 }

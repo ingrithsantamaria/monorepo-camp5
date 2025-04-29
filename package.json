@@ -1,0 +1,13 @@
+{
+  "name": "monorepo-camp5",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "npm run test --workspace=cypress-bdd",
+    "audit": "npm run audit --workspace=lighthouse-audit",
+    "ci": "npm run test && npm run audit"
+  }
+}
